@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Statistics Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <header class="neon-header">
+        <div class="container">
+            <h1 class="neon-text">CRIME<span class="blink">STATS</span>INDIA</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}" class="neon-link">Home</a></li>
+                    <li><a href="{{ url_for('predefined') }}" class="neon-link">Predefined Analysis</a></li>
+                    <li><a href="{{ url_for('custom') }}" class="neon-link">Custom Analysis</a></li>
+                    <li><a href="{{ url_for('about') }}" class="neon-link">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="neon-footer">
+        <div class="container">
+            <p>Crime Statistics Dashboard &copy; 2023 | Data Source: National Crime Records Bureau</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

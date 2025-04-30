@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard-section">
+    <h2 class="neon-subtitle">CUSTOM CRIME ANALYSIS</h2>
+    
+    <form id="custom-form" class="custom-form">
+        <div class="form-group">
+            <label for="x_col">X-Axis:</label>
+            <select id="x_col" name="x_col" required>
+                <option value="">Select a column</option>
+                {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="y_col">Y-Axis:</label>
+            <select id="y_col" name="y_col">
+                <option value="">Select a column (optional for pie charts)</option>
+                {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="plot_type">Plot Type:</label>
+            <select id="plot_type" name="plot_type" required>
+                <option value="">Select plot type</option>
+                <option value="bar">Bar Chart</option>
+                <option value="line">Line Chart</option>
+                <option value="scatter">Scatter Plot</option>
+                <option value="pie">Pie Chart</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="neon-button">Generate Plot</button>
+    </form>
+    
+    <div class="plot-container">
+        <div id="custom-plot-area">
+            <p class="instruction">Configure your analysis above and generate the visualization</p>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('custom-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    
+    fetch('/custom_plot', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            document.getElementById('custom-plot-area').innerHTML = 
+                `<p class="error">${data.error}</p>`;
+        } else {
+            document.getElementById('custom-plot-area').innerHTML = 
+                `<img src="${data.img}" alt="Custom Crime Visualization" class="plot-image">`;
+        }
+    })
+    .catch(error => {
+        document.getElementById('custom-plot-area').innerHTML = 
+            `<p class="error">Error generating custom visualization: ${error}</p>`;
+    });
+});
+</script>
+{% endblock %}

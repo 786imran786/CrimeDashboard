@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="about-section">
+    <div class="about-container">
+        <div class="about-card neon-card">
+            <div class="about-header">
+                <h2 class="neon-subtitle">ABOUT THE DEVELOPER</h2>
+                <div class="neon-divider"></div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Mohd Imran Siddiqui" class="profile-img">
+                    <div class="neon-border"></div>
+                </div>
+                
+                <div class="about-text">
+                    <h3 class="neon-name">Mohd Imran Siddiqui</h3>
+                    <p class="neon-role">Data Science Student & Developer</p>
+                    
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <span class="neon-icon">🎓</span>
+                            <p>Currently pursuing BTech at Lovely Professional University</p>
+                        </div>
+                        <div class="detail-item">
+                            <span class="neon-icon">📊</span>
+                            <p>Specialization in Data Science</p>
+                        </div>
+                        <div class="detail-item">
+                            <span class="neon-icon">💻</span>
+                            <p>Full-stack developer with focus on data visualization</p>
+                        </div>
+                        <div class="detail-item">
+                            <span class="neon-icon">🔍</span>
+                            <p>Passionate about uncovering insights from complex datasets</p>
+                        </div>
+                        <div class="detail-item">
+                            <span class="neon-icon">🚀</span>
+                            <p>Building intelligent systems to solve real-world problems</p>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-section">
+                        <h4 class="neon-skills">Technical Skills</h4>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Data Analysis</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">Matplotlib</span>
+                            <span class="skill-tag">Seaborn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

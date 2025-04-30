@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard-section">
+    <h2 class="neon-subtitle">PREDEFINED CRIME ANALYSIS</h2>
+    
+    <div class="options-grid">
+        <div class="option-card" onclick="generatePlot('1')">
+            <h3>Top Crime States</h3>
+            <p>Top 10 states with highest IPC crimes</p>
+        </div>
+        <div class="option-card" onclick="generatePlot('2')">
+            <h3>Violent Crimes</h3>
+            <p>Distribution of violent crimes</p>
+        </div>
+        <div class="option-card" onclick="generatePlot('3')">
+            <h3>Women-Related Crimes</h3>
+            <p>Distribution of crimes against women</p>
+        </div>
+        <div class="option-card" onclick="generatePlot('4')">
+            <h3>Property Crimes</h3>
+            <p>Distribution of property-related crimes</p>
+        </div>
+        <div class="option-card" onclick="generatePlot('5')">
+            <h3>Crime Trends</h3>
+            <p>Focused crimes trend (2014-2020)</p>
+        </div>
+        <div class="option-card" onclick="generatePlot('6')">
+            <h3>Crime Correlation</h3>
+            <p>Heatmap of crime correlations</p>
+        </div>
+    </div>
+    
+    <div class="plot-container">
+        <div id="plot-area">
+            <p class="instruction">Select an analysis option above to display the visualization</p>
+        </div>
+    </div>
+</section>
+
+<script>
+function generatePlot(option) {
+    fetch('/plot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({option: option})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            document.getElementById('plot-area').innerHTML = `<p class="error">${data.error}</p>`;
+        } else {
+            document.getElementById('plot-area').innerHTML = 
+                `<img src="${data.img}" alt="Crime Visualization" class="plot-image">`;
+        }
+    })
+    .catch(error => {
+        document.getElementById('plot-area').innerHTML = 
+            `<p class="error">Error loading visualization: ${error}</p>`;
+    });
+}
+</script>
+{% endblock %}

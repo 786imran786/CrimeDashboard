@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h2 class="neon-subtitle">ANALYZE CRIME PATTERNS ACROSS INDIA</h2>
+        <p>Interactive dashboard for visualizing crime statistics from 2014-2020</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('predefined') }}" class="neon-button">View Predefined Reports</a>
+            <a href="{{ url_for('custom') }}" class="neon-button">Create Custom Analysis</a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h3 class="neon-feature">Violent Crimes</h3>
+        <p>Analyze murder, rape, riots and other violent crimes</p>
+    </div>
+    <div class="feature-card">
+        <h3 class="neon-feature">Women Safety</h3>
+        <p>Track crimes against women including dowry deaths and assault</p>
+    </div>
+    <div class="feature-card">
+        <h3 class="neon-feature">Property Crimes</h3>
+        <p>Examine theft, burglary, robbery and auto theft patterns</p>
+    </div>
+</section>
+
+<section class="data-info">
+    <h3>About the Data</h3>
+    <p>This dashboard uses official crime data from the National Crime Records Bureau (NCRB) of India.</p>
+    <p>The dataset covers all Indian states and union territories from 2014 to 2020.</p>
+</section>
+{% endblock %}
